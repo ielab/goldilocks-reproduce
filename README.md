@@ -4,7 +4,8 @@ This is the repo for the Reproducibility track Paper *A Reproducibility Study of
 # Datasets
 How to get the datasets?
 - **RCV1-v2**
-  Please request the dataset from https://trec.nist.gov/data/reuters/reuters.html, and
+
+  Please request the original dataset from https://trec.nist.gov/data/reuters/reuters.html, and check the necessary files provided under `./data-processing/rcv1-v2`
 - **Jeb-Bush**
   Please e-mail the author https://web.archive.org/web/20160220052206/http://plg.uwaterloo.ca/~gvcormac/total-recall/
 - **CLEF-TAR**
