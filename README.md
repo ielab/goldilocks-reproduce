@@ -72,7 +72,7 @@ We adapted the codes from the original authors to our own experiment environment
     ```
     - With **BioLinkBert-Base**, check the comments inside `clef-mlm-finetuning.py`.
     
-  and the option for CLEF collections ranges from `'2017/test'` to `'2019/intervention/train'`.
+    and the option for CLEF collections ranges from `'2017/test'` to `'2019/intervention/train'`.
     
 - **Reproduce goldilocks-tar**
   - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
@@ -95,7 +95,6 @@ We adapted the codes from the original authors to our own experiment environment
         --batch_size 25 \
         --model_path ./mlm-finetune/clef/2017/bert-base_clef_2017_test_CD012019_ep2 \
     ```
-    and the options according to CLEF collections range from `clef17_al_exp.py` to `clef19_al_exp.py` with corresponding topics.
     - With **BioLinkBert-Base**, run corresponding `biolink` version such as 
 
       ```bash
@@ -106,6 +105,7 @@ We adapted the codes from the original authors to our own experiment environment
         --batch_size 25 \
         --model_path  michiyasunaga/BioLinkBERT-base \
       ```
+    and the options according to CLEF collections range from `clef17_al_exp.py` to `clef19_al_exp.py` with corresponding topics.
 
 # Baseline
 - **Feature engineering**
