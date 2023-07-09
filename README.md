@@ -16,10 +16,102 @@ We provide the clean version of title & abstract of all docs in [`all_clean.json
   
 
 # TAR with BERT
-Code
+We adapted the codes from the original authors to our own experiment environment, please check the comments inside each file if necessary. 
+- **Environment**
+  
+  For our setting: `3 * A100`, we use `python=3.8`, `cuda=11.7`, run
+  ```bash
+  conda env create -f env.yaml
+  ```
+  and install the dev version of `libact` for active learning as below.
+  
+  To install the env provided by the original authors, run
+  ```bash
+  conda create -n huggingface python=3.7
+  conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
+  pip install transformers
+  conda install numpy scipy pandas scikit-learn nltk tqdm Cython joblib
+  LIBACT_BUILD_HINTSVM=0 LIBACT_BUILD_VARIANCE_REDUCTION=0 pip install -e ~/repositories/libact
+  ```
+  **N.B.** The active learning library `libact` used is the dev version from the original authors https://github.com/eugene-yang/libact/tree/dev
+- **Tokenization**
+  
+  - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
+    
+    ```bash
+    python3 mlm-finetuning.py
+    ```
+  and check the comments inside for both `rcv1` and `jb`.
+  
+  - For generalizability on **CLEF collections**, run
+    
+    ```bash
+    python3 clef.bert.tokenize.py 2017/test
+    ```
+
+    - With **BioLinkBert-Base**, run
+      
+      ```bash
+      python3 clef.biolinkbert.tokenize.py 2017/test
+      ```
+    and the option for CLEF collections ranges from `'2017/test'` to `'2019/intervention/train'`.
+  
+- **Further pre-training with** `mlm-finetuning`
+  
+  - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
+  
+    ```bash
+    python3 mlm-finetuning.py
+    ```
+  and check the comments inside for both `rcv1` and `jb`.
+  
+  - For generalizability on **CLEF collections**, run
+
+    ```bash
+    python3 clef-mlm-finetuning.py 2017/test
+    ```
+    - With **BioLinkBert-Base**, check the comments inside `clef-mlm-finetuning.py`.
+    
+  and the option for CLEF collections ranges from `'2017/test'` to `'2019/intervention/train'`.
+    
+- **Reproduce goldilocks-tar**
+  - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
+
+    ```bash
+    python3 al_exp.py --category 434 \
+        --cached_dataset ./cache_new/jb50sub_org_bert-base.512.pkl.gz \
+        --dataset_path  ./jb_info/ \
+        --model_path ./mlm-finetune/bert-base_jb50sub_ep10 \
+        --output_path  ./results/jb/ep10/ \
+    ```
+    and change the options for `rcv1` and `jb` with corresponding topics.
+  - For generalizability on **CLEF collections**, run
+    
+    ```bash
+    python3 clef17_al_exp.py --topic CD012019 \
+        --cached_dataset ./cache_new/clef/clef2017_test_CD012019_org_bert-base.512.pkl.gz \
+        --dataset_path  ./clef_info/2017/test/CD012019 \
+        --output_path  ./results/clef/ep2/clef17_test/ \
+        --batch_size 25 \
+        --model_path ./mlm-finetune/clef/2017/bert-base_clef_2017_test_CD012019_ep2 \
+    ```
+    and the options according to CLEF collections range from `clef17_al_exp.py` to `clef19_al_exp.py` with corresponding topics.
+    - With **BioLinkBert-Base**, run corresponding `biolink` version such as 
+
+      ```bash
+      python3 clef17_biolink_exp.py --topic CD011984 \
+        --cached_dataset ./cache_new/clef_biolink/clef2017_train_CD011984_biolink_bert-base.512.pkl.gz \
+        --dataset_path  ./clef_info/2017/train/CD011984 \
+        --output_path  ./results/biolink/ep0/clef17_train/ \
+        --batch_size 25 \
+        --model_path  michiyasunaga/BioLinkBERT-base \
+      ```
 
 # Baseline
-Code
+- **Feature engineering**
+- **Reproduce goldilocks-tar baseline with logistic regression**
 
 # Analysis 
-Code
+- **R-Precision**
+- **Review Cost**
+- **Statistical significance test** 
