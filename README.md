@@ -84,7 +84,7 @@ We adapted the codes from the original authors to our own experiment environment
         --model_path ./mlm-finetune/bert-base_jb50sub_ep10 \
         --output_path  ./results/jb/ep10/ \
     ```
-    and change the options for `rcv1` and `jb` with corresponding topics.
+    and change the options for `rcv1` and `jb` with corresponding topics, `ep` refers to the further pre-training epochs from the previous stage. 
   - For generalizability on **CLEF collections**, run
     
     ```bash
