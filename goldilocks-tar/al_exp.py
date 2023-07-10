@@ -214,7 +214,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--dataset_path', type=Path, default='./rcv1_info')
 
-    parser.add_argument('--output_path', type=Path, default='./results/rcv1_3/ep0')
+    parser.add_argument('--output_path', type=Path, default='./results/rcv1/ep0')
     parser.add_argument('--resume_runs', action='store_true', default=False)
     parser.add_argument('--save_it_models', action='store_true', default=False)
     parser.add_argument('--dump_freq', type=int, default=1)
