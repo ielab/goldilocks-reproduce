@@ -39,9 +39,9 @@ We adapted the codes from the original authors to our own experiment environment
   - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
     
     ```bash
-    python3 mlm-finetuning.py
+    python3 bert.tokenize.py rcv1
     ```
-  and check the comments inside for both `rcv1` and `jb`.
+  and change the option for both `rcv1` and `jb`.
   
   - For generalizability on **CLEF collections**, run
     
@@ -49,12 +49,12 @@ We adapted the codes from the original authors to our own experiment environment
     python3 clef.bert.tokenize.py 2017/test
     ```
 
-    - With **BioLinkBert-Base**, run
+    - With **BioLinkBert-base**, run
       
       ```bash
       python3 clef.biolinkbert.tokenize.py 2017/test
       ```
-    and the option for CLEF collections ranges from `'2017/test'` to `'2019/intervention/train'`.
+    and the option for CLEF collections ranges from `2017/test` to `2019/intervention/train`.
   
 - **Further pre-training with** `mlm-finetuning`
   
@@ -70,9 +70,9 @@ We adapted the codes from the original authors to our own experiment environment
     ```bash
     python3 clef-mlm-finetuning.py 2017/test
     ```
-    - With **BioLinkBert-Base**, check the comments inside `clef-mlm-finetuning.py`.
+    - With **BioLinkBert-base**, check the comments inside `clef-mlm-finetuning.py`.
     
-    and the option for CLEF collections ranges from `'2017/test'` to `'2019/intervention/train'`.
+    and the option for CLEF collections ranges from `2017/test` to `2019/intervention/train`.
     
 - **Reproduce goldilocks-tar**
   - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
@@ -84,7 +84,7 @@ We adapted the codes from the original authors to our own experiment environment
         --model_path ./mlm-finetune/bert-base_jb50sub_ep10 \
         --output_path  ./results/jb/ep10/ \
     ```
-    and change the options for `rcv1` and `jb` with corresponding topics, `ep` refers to the further pre-training epochs from the previous stage. 
+    and change the options for `rcv1` and `jb` with corresponding categories, `ep` refers to the further pre-training epochs from the previous stage. 
   - For generalizability on **CLEF collections**, run
     
     ```bash
@@ -95,7 +95,9 @@ We adapted the codes from the original authors to our own experiment environment
         --batch_size 25 \
         --model_path ./mlm-finetune/clef/2017/bert-base_clef_2017_test_CD012019_ep2 \
     ```
-    - With **BioLinkBert-Base**, run corresponding `biolink` version such as 
+    and the options according to CLEF collections range from `clef17_al_exp.py` to `clef19_al_exp.py` with corresponding topics.
+    
+    - With **BioLinkBert-base**, run corresponding `biolink` version such as 
 
       ```bash
       python3 clef17_biolink_exp.py --topic CD011984 \
@@ -105,11 +107,42 @@ We adapted the codes from the original authors to our own experiment environment
         --batch_size 25 \
         --model_path  michiyasunaga/BioLinkBERT-base \
       ```
-    and the options according to CLEF collections range from `clef17_al_exp.py` to `clef19_al_exp.py` with corresponding topics.
+    and the options according to CLEF collections range from `clef17_biolink_exp.py` to `clef19_biolink_exp.py` with corresponding topics.
 
 # Baseline
 - **Feature engineering**
+  - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
+    ```bash
+    python3 lr.feature.py rcv1
+    ```
+    and change the option for both `rcv1` and `jb`.
+    
+  - For generalizability on **CLEF collections**, run
+    ```bash
+    python3 clef.lr.feature.py 2019/intervention/train
+    ```
+    and the option for CLEF collections ranges from `2017/test` to `2019/intervention/train`.
+    
 - **Reproduce goldilocks-tar baseline with logistic regression**
+  - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
+    ```bash
+    python3 al_baseline.py --category 434 \
+        --cached_dataset ./jb_info/jb_sampled_features.pkl \
+        --dataset_path  ./jb_info \
+        --output_path  ./results/baseline/jb/
+    ```
+    and change the options for `rcv1` and `jb` with corresponding categories.
+    
+  - For generalizability on **CLEF collections**, run
+    ```bash
+    python3 clef_al_baseline.py --dataset clef2017_train \
+        --topic CD011984 \
+        --batch_size 25 \
+        --cached_dataset ./clef_info/lr_features/clef2017_train_CD011984_features.pkl \
+        --dataset_path  ./clef_info/2017/train/CD011984 \
+        --output_path  ./results/baseline/clef/clef17_train/
+    ```
+    and change the options for CLEF collection features ranges from `clef2017_train` to `clef2019_intervention_train` with corresponding topics.
 
 # Analysis 
 - **R-Precision**
