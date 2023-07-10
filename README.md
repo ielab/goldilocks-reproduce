@@ -51,9 +51,9 @@ We adapted the codes from the original authors to our own experiment environment
 
     - With **BioLinkBert-base**, run
       
-      ```bash
-      python3 clef.biolinkbert.tokenize.py 2017/test
-      ```
+    ```bash
+    python3 clef.biolinkbert.tokenize.py 2017/test
+    ```
     and the option for CLEF collections ranges from `2017/test` to `2019/intervention/train`.
   
 - **Further pre-training with** `mlm-finetuning`
@@ -99,14 +99,14 @@ We adapted the codes from the original authors to our own experiment environment
     
     - With **BioLinkBert-base**, run corresponding `biolink` version such as 
 
-      ```bash
-      python3 clef17_biolink_exp.py --topic CD011984 \
-        --cached_dataset ./cache_new/clef_biolink/clef2017_train_CD011984_biolink_bert-base.512.pkl.gz \
-        --dataset_path  ./clef_info/2017/train/CD011984 \
-        --output_path  ./results/biolink/ep0/clef17_train/ \
-        --batch_size 25 \
-        --model_path  michiyasunaga/BioLinkBERT-base \
-      ```
+    ```bash
+    python3 clef17_biolink_exp.py --topic CD011984 \
+      --cached_dataset ./cache_new/clef_biolink/clef2017_train_CD011984_biolink_bert-base.512.pkl.gz \
+      --dataset_path  ./clef_info/2017/train/CD011984 \
+      --output_path  ./results/biolink/ep0/clef17_train/ \
+      --batch_size 25 \
+      --model_path  michiyasunaga/BioLinkBERT-base \
+    ```
     and the options according to CLEF collections range from `clef17_biolink_exp.py` to `clef19_biolink_exp.py` with corresponding topics.
 
 # Baseline
@@ -146,5 +146,11 @@ We adapted the codes from the original authors to our own experiment environment
 
 # Analysis 
 - **R-Precision**
+  
+  Please refer to `analysis_RP.py` under `./utils`.
 - **Review Cost**
-- **Statistical significance test** 
+  
+  Please refer to `analysis_cost.py` and `analysis_cost_bin.py` under `./utils`.
+- **Statistical significance test**
+  
+  Please refer to `stat_RP.py` and `stat_cost.py` under `./utils`.
