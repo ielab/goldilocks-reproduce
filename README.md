@@ -16,7 +16,7 @@ We provide the clean version of title & abstract of all docs in [`all_clean.json
 
 Large files under `./data-processing/rcv1-v2` and `./data-processing/jeb-bush` can be downloaded from [rcv1_path.txt](https://drive.google.com/file/d/1lk5o0tezGumV6ySLUSW_ADj8X37E4Y0e/view?usp=sharing), [id.txt](https://drive.google.com/file/d/152Xfr3pTtH_RXtlEEmP6v_N5J2SRz3cS/view?usp=sharing), and [athome1.md5](https://drive.google.com/file/d/1I-035nLg5HIZaD9hDOh_D0ZRLqkkG9N8/view?usp=sharing).
 
-We also provide the [category information table](https://docs.google.com/spreadsheets/d/1N6_CqRNxu1Cn9VHvDRwmfdMNToRsLh5LoBQo1glWBks/edit?usp=sharing) used in this reproducibility paper of these three datasets.
+We also provide the [category information table](https://docs.google.com/spreadsheets/d/1N6_CqRNxu1Cn9VHvDRwmfdMNToRsLh5LoBQo1glWBks/edit?usp=sharing) of these three datasets used in this reproducibility paper.
 # Hyperparameters
   
 The optimizer and loss function are the same as in the original paper. 
