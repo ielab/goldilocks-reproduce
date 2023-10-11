@@ -15,7 +15,8 @@ How to get the datasets?
 We provide the clean version of title & abstract of all docs in [`all_clean.jsonl`](https://drive.google.com/file/d/1kppExc6Wo81sCPYI2hkSsxO-ekgD2Qcc/view?usp=drive_link), and the processed clef collections used in the experiments can be downloaded from [clef_for_goldilocks](https://drive.google.com/file/d/1HcrOgTjAPm0cP8kUq6wdMa1v6eaztPwD/view?usp=sharing), the data processing process can be found under `./data-processing/clef`.
 
 Large files under `./data-processing/rcv1-v2` and `./data-processing/jeb-bush` can be downloaded from [rcv1_path.txt](https://drive.google.com/file/d/1lk5o0tezGumV6ySLUSW_ADj8X37E4Y0e/view?usp=sharing), [id.txt](https://drive.google.com/file/d/152Xfr3pTtH_RXtlEEmP6v_N5J2SRz3cS/view?usp=sharing), and [athome1.md5](https://drive.google.com/file/d/1I-035nLg5HIZaD9hDOh_D0ZRLqkkG9N8/view?usp=sharing).
-  
+
+We also provide the [category information table](https://docs.google.com/spreadsheets/d/1N6_CqRNxu1Cn9VHvDRwmfdMNToRsLh5LoBQo1glWBks/edit?usp=sharing) used in this reproducibility paper of these three datasets.
 # Hyperparameters
   
 The optimizer and loss function are the same as in the original paper. 
