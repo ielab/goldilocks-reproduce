@@ -16,6 +16,12 @@ We provide the clean version of title & abstract of all docs in [`all_clean.json
 
 Large files under `./data-processing/rcv1-v2` and `./data-processing/jeb-bush` can be downloaded from [rcv1_path.txt](https://drive.google.com/file/d/1lk5o0tezGumV6ySLUSW_ADj8X37E4Y0e/view?usp=sharing), [id.txt](https://drive.google.com/file/d/152Xfr3pTtH_RXtlEEmP6v_N5J2SRz3cS/view?usp=sharing), and [athome1.md5](https://drive.google.com/file/d/1I-035nLg5HIZaD9hDOh_D0ZRLqkkG9N8/view?usp=sharing).
   
+# Hyperparameters
+  
+The optimizer and loss function are the same as in the original paper. 
+- For BERT, we use `ADAM` as the optimizer with `no weight decay` and `no warm-up` period, and a `learning rate` of `5 * 10^-5` for `further pre-training` with `mask-language modelling`. The language model pre-training ranges from not pre-training at all on the target collection, to performing ten iterations over the collection. For `classification fine-tuning`, we use the `ADAM` optimizer with a `linear weight decay` of `0.01` with `50 warm-up steps` and an `initial learning rate` of `0.001`.
+- For logistic regression, we use `L2 regularization` on the losses and fit to `convergence with default settings` in the active learning pipeline.
+- In order to better fit our GPUs, we increased the `training` and `evaluation` `batch sizes` for BERT to `100` and `1000` respectively -- examining the original author's code, we could understand they instead used batch sizes of 26 and 600. Furthermore, we found that using `mixed precision` training (fp16) could **largely reduce the training time**.
 
 # TAR with BERT
 We adapted the codes from the original authors to our own experiment environment, please check the comments inside each file if necessary. 
@@ -56,7 +62,7 @@ We adapted the codes from the original authors to our own experiment environment
     ```bash
     python3 clef.biolinkbert.tokenize.py 2017/test
     ```
-    and the option for CLEF collections ranges from `2017/test` to `2019/intervention/train`.
+    and the option for CLEF collections ranges from `2017/test` to `2019/intervention/train`
   
 - **Further pre-training with** `mlm-finetuning`
   
