@@ -1,5 +1,5 @@
 # Goldilocks-Reproduce-Repository
-This is the repo for the Reproducibility track Paper *A Reproducibility Study of Goldilocks: Just-Right Tuning of BERT for TAR*
+This is the repo for the ECIR 2024 Reproducibility track Paper *A Reproducibility Study of Goldilocks: Just-Right Tuning of BERT for TAR*
 
 # Datasets & Data Processing
 How to get the datasets?
