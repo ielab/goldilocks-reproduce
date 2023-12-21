@@ -30,7 +30,7 @@ We adapted the codes from the original authors to our own experiment environment
   
   For our setting: `3 * A100`, we use `python=3.8`, `cuda=11.7`, run
   ```bash
-  conda env create -f env.yaml
+  conda env create -f env.yml
   ```
   and install the dev version of `libact` for active learning as below.
   
