@@ -1,7 +1,9 @@
 # Goldilocks-Reproduce-Repository
-This is the repo for the ECIR 2024 Reproducibility track Paper *A Reproducibility Study of Goldilocks: Just-Right Tuning of BERT for TAR*
+This is the repo for the ECIR 2024 Reproducibility track Paper ***A Reproducibility Study of Goldilocks: Just-Right Tuning of BERT for TAR*** [[arXiv](https://arxiv.org/abs/2401.08104)]
+> Xinyu Mao, Bevan Koopman, and Guido Zuccon. A Reproducibility Study of Goldilocks: Just-Right Tuning of BERT for TAR. In Advances in Information Retrieval: 46th European Conference on Information Retrieval (ECIR'24). Glasgow, UK. March 2024. [10.1007/978-3-031-56066-8_13](https://doi.org/10.1007/978-3-031-56066-8_13)
 
-# Datasets & Data Processing
+
+## Datasets & Data Processing
 How to get the datasets?
 - **RCV1-v2**
 
@@ -17,14 +19,14 @@ We provide the clean version of title & abstract of all docs in [`all_clean.json
 Large files under `./data-processing/rcv1-v2` and `./data-processing/jeb-bush` can be downloaded from [rcv1_path.txt](https://drive.google.com/file/d/1lk5o0tezGumV6ySLUSW_ADj8X37E4Y0e/view?usp=sharing), [id.txt](https://drive.google.com/file/d/152Xfr3pTtH_RXtlEEmP6v_N5J2SRz3cS/view?usp=sharing), and [athome1.md5](https://drive.google.com/file/d/1I-035nLg5HIZaD9hDOh_D0ZRLqkkG9N8/view?usp=sharing).
 
 We also provide the [category information table](https://docs.google.com/spreadsheets/d/1N6_CqRNxu1Cn9VHvDRwmfdMNToRsLh5LoBQo1glWBks/edit?usp=sharing) of these three datasets used in this reproducibility paper.
-# Hyperparameters
+## Hyperparameters
   
 The optimizer and loss function are the same as in the original paper. 
-- For BERT, we use `ADAM` as the optimizer with `no weight decay` and `no warm-up` period, and a `learning rate` of `5 * 10^-5` for `further pre-training` with `mask-language modelling`. The language model pre-training ranges from not pre-training at all on the target collection, to performing ten iterations over the collection. For `classification fine-tuning`, we use the `ADAM` optimizer with a `linear weight decay` of `0.01` with `50 warm-up steps` and an `initial learning rate` of `0.001`.
-- For logistic regression, we use `L2 regularization` on the losses and fit to `convergence with default settings` in the active learning pipeline.
-- In order to better fit our GPUs, we increased the `training` and `evaluation` `batch sizes` for BERT to `100` and `1000` respectively -- examining the original author's code, we could understand they instead used batch sizes of 26 and 600. Furthermore, we found that using `mixed precision` training (fp16) could **largely reduce the training time**.
+- For BERT, we use **ADAM** as the optimizer with `no weight decay` and `no warm-up` period, and a **learning rate** of `5 * 10^-5` for **further pre-training** with `mask-language modelling`. The language model pre-training ranges from not pre-training at all on the target collection, to performing ten iterations over the collection. For `classification fine-tuning`, we use the **ADAM** optimizer with a **linear weight decay** of `0.01` with `50` warm-up steps and an **initial learning rate** of `0.001`.
+- For logistic regression, we use **L2 regularization** on the losses and fit to convergence with default settings in the active learning pipeline.
+- In order to better fit our GPUs, we increased the training and evaluation **batch sizes** for BERT to `100` and `1000` respectively -- examining the original author's code, we could understand they instead used batch sizes of 26 and 600. Furthermore, we found that using `mixed precision` training (fp16) could **largely reduce the training time**.
 
-# TAR with BERT
+## TAR with BERT
 We adapted the codes from the original authors to our own experiment environment, please check the comments inside each file if necessary. 
 - **Environment**
   
@@ -118,7 +120,7 @@ We adapted the codes from the original authors to our own experiment environment
     ```
     and the options according to CLEF collections range from `clef17_biolink_exp.py` to `clef19_biolink_exp.py` with corresponding topics.
 
-# Baseline
+## Baseline
 - **Feature engineering**
   - For reproducibility on **RCV1-v2** and **Jeb-Bush**, run
     ```bash
@@ -153,7 +155,7 @@ We adapted the codes from the original authors to our own experiment environment
     ```
     and change the options for CLEF collection features ranges from `clef2017_train` to `clef2019_intervention_train` with corresponding topics.
 
-# Analysis 
+## Analysis 
 - **R-Precision**
   
   Please refer to `analysis_RP.py` under `./utils`.
@@ -163,3 +165,21 @@ We adapted the codes from the original authors to our own experiment environment
 - **Statistical significance test**
   
   Please refer to `stat_RP.py` and `stat_cost.py` under `./utils`.
+
+## Citation
+If you find this repo useful for your research, please kindly cite the following paper:<br>
+```
+@inproceedings{mao2024reproduce,
+  author       = {Xinyu Mao and Bevan Koopman and Guido Zuccon},
+  title        = {A Reproducibility Study of Goldilocks: Just-Right Tuning of BERT for TAR},
+  booktitle    = {European Conference on Information Retreival},
+  series       = {ECIR '24},
+  pages        = {132--146},
+  publisher    = {Springer},
+  year         = {2024},
+  doi          = {10.1007/978-3-031-56066-8\_13},
+}
+```
+
+## Contact
+If you have any questions, feel free to contact `xinyu.mao` [AT]uq.edu.au (with [AT] replaced by @).
